@@ -517,11 +517,14 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
-
+  var phase = [];
+  for (var i = 0; i<5;i++){
+    phase[i] = Math.sin((document.body.scrollTop / 1250) + (i % 5));
+  }
   var items = document.querySelectorAll('.mover');
   for (var i = 0; i < items.length; i++) {
-    var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
-    items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+    var phase_item = phase[i%5];
+    items[i].style.left = items[i].basicLeft + 100 * phase_item + 'px';
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
