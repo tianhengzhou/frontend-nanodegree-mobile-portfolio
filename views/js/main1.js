@@ -407,16 +407,16 @@ var resizePizzas = function(size) {
   function changeSliderLabel(size) {
     switch(size) {
       case "1":
-        document.querySelector("#pizzaSize").innerHTML = "Small";
+        document.getElementById("pizzaSize").innerHTML = "Small";
         return;
       case "2":
-        document.querySelector("#pizzaSize").innerHTML = "Medium";
+        document.getElementById("pizzaSize").innerHTML = "Medium";
         return;
       case "3":
-        document.querySelector("#pizzaSize").innerHTML = "Large";
+        document.getElementById("pizzaSize").innerHTML = "Large";
         return;
     case "4":
-        document.querySelector("#pizzaSize").innerHTML = "X-Large";
+        document.getElementById("pizzaSize").innerHTML = "X-Large";
         return;
       default:
         console.log("bug in changeSliderLabel");
@@ -559,12 +559,16 @@ document.addEventListener('DOMContentLoaded', function() {
       movingPizzas1 = document.getElementById('movingPizzas1');
   // the basicLeft is showing repeat same 8 results. Probably it's causing by too large i. So that divide it into 8
   // which becomes 25
-  for (var i = 0; i < 25; i++) {
+  var size = window.innerHeight,
+      rows = Math.floor(size/s);
+  var pizzasnumber = rows * cols;
+  console.log(size);
+  for (var i = 0; i < pizzasnumber; i++) {
     elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
     elem.style.height = "100px";
-    elem.style.width = "73.333px";
+    elem.style.width = "73.33px";
     elem.basicLeft = (i % cols) * s;
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
     movingPizzas1.appendChild(elem);
